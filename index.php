@@ -1,24 +1,12 @@
 <?php
 session_start();
 include_once "controller/userController.php";
+include_once "controller/classroomController.php";
 
 
 $userController = new UserController();
+$classroomController = new classroomController();
 
-// if(isset($_GET['signin'])) {
-//     include "view/signin.php";
-// }
-
-
-// if (isset($_POST['signup'])) {
-//     extract($_POST);
-//     $userController->signUpUsers($firstname, $lastname, $email, $password);
-// }
-
-// if (isset($_POST['signin'])) {
-//     extract($_POST);
-//     $userController->signinUsers($email, $password);
-// }
 
 
 
@@ -76,6 +64,12 @@ if (isset($_GET['action'])) {
         case 'delete':
             $idd = $_GET['id'];
             $userController->deleteUser($idd);
+            break;
+        case 'stats':
+            $userController->getStats(3);
+            break;
+        case 'classrooms':
+            $classroomController->classroom($_SESSION['id']);
             break;
         default:
             echo "AHA!";

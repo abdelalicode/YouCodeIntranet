@@ -1,5 +1,5 @@
 <?php
-include "database/database.php";
+include_once "database/database.php";
 
 class User extends Db
 {
@@ -9,7 +9,11 @@ class User extends Db
         $sqlallappr = "SELECT * FROM users WHERE role_id = '$idrole'";
         return $this->connect()->query($sqlallappr)->fetchAll(PDO::FETCH_ASSOC);
     }
-
+    public function getClassrooms()
+    {
+        $sqlallclass = "SELECT * FROM classroom";
+        return $this->connect()->query($sqlallclass)->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function getAll()
     {
         $sqlallusers = "SELECT users.id, firstname, lastname, email, role.name FROM `users` JOIN role WHERE users.role_id = role.id AND role_id !=1 ;";
@@ -50,4 +54,12 @@ class User extends Db
         $sqldel = "DELETE FROM `users` WHERE `id` = $idd";
         return $this->connect()->query($sqldel);
     }
+
+    public function stats($idrole)
+    {
+        $sqlcount = "SELECT COUNT(*) FROM `users` WHERE role_id = $idrole";
+        return $this->connect()->query($sqlcount)->fetchColumn();
+    }
+
+
 }

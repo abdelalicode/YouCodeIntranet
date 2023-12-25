@@ -34,15 +34,24 @@ class UserController
         return $apprenants;
     }
 
+    public function listclassrooms()
+    {
+        $classes = $this->ObjUser->getClassrooms();
+        
+        require_once "view/listclassrooms.php";
+        // or header index?action=list;
+        return $classes;
+    }
+
 
     public function checkUser($id)
     {
         if ($id == 1) {
             $this->listusers();
         } else if ($id == 2) {
-            echo "Formateur";
+            header("Location: index.php?action=classrooms");
         } else if ($id == 3) {
-            echo "Apprenant";
+            $this->listclassrooms();
         } else {
             echo "Simple User";
         }
@@ -64,7 +73,9 @@ class UserController
         $signUser = $this->ObjUser->signUser($email, $password);
 
         if ($signUser) {
+            $_SESSION['id'] = $signUser['id'];
             $_SESSION['role_id'] = $signUser['role_id'];
+            $_SESSION['firstname'] = $signUser['firstname'];
             $this->checkUser($_SESSION['role_id']);
         } else {
             echo "AHAA ACHRIF!";
@@ -74,6 +85,9 @@ class UserController
     public function updateRole($userhid, $roleid)
     {
         $updrl = $this->ObjUser->updateUser($userhid, $roleid);
+        if ($updrl) {
+            header("Location: index.php?action=allusers");
+        }
     }
 
     public function deleteUser($idd)
@@ -90,5 +104,13 @@ class UserController
         if ($updrl) {
             header("Location: index.php?action=allappr");
         }
+    }
+
+    public function getStats($idrole)
+    {
+        $counter = $this->ObjUser->stats($idrole);
+
+        include_once "view/stats.php";
+        return $counter;
     }
 }

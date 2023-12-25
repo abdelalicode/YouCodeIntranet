@@ -7,7 +7,7 @@ if ($idrole == 2) {
 
 
 
-include_once "controller/userController.php";
+// include_once "controller/userController.php";
 require_once "view/sidebar.php";
 
 ?>
@@ -95,4 +95,5 @@ require_once "view/sidebar.php";
 
 </div>
 <?php $content = ob_get_clean() ?>
+
 <?php include_once "view/layout.php"; ?>

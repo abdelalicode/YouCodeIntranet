@@ -58,7 +58,7 @@
           <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
               <ul class="list-unstyled">
-                <li><a class="dropdown-item my-4" href="service_stats.php">STATISTICS</a></li>
+                <li><a class="dropdown-item my-4" href="index.php?action=stats">STATISTICS</a></li>
               </ul>
             </div>
           </div>

@@ -11,7 +11,7 @@
 <body>
 
     <div class="container" style="margin-left: 20%;">
-        <h2 class="m-3"><?= $title ?></h2>
+        <h2 class="mt-3"><?= $title ?></h2>
 
         <?= $content ?>
 
